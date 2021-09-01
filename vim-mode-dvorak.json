@@ -37,14 +37,6 @@
               "shell_command": "osascript -e 'display notification \"Release [caps lock] to leave\" with title \"-- NORMAL --\"'"
             }
           ],
-          "to_after_key_up": [
-            {
-              "set_variable": {
-                "name": "vim_mode",
-                "value": 0
-              }
-            }
-          ],
           "conditions": [
             {
               "type": "frontmost_application_unless",
