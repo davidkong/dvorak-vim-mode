@@ -11,12 +11,19 @@
       "manipulators": [
 
 
-{
+          {
           "type": "basic",
           "from": {
-            "key_code": "left_command"
+            "simultaneous": [
+              {
+                "key_code": "d"
+              },
+              {
+                "key_code": "k"
+              }
+            ]
           },
-          "to_if_alone": [
+          "to": [
             {
               "set_variable": {
                 "name": "vim_mode",
@@ -26,11 +33,6 @@
             {
               "shell_command": "osascript -e 'display notification \"Press [i] to leave\" with title \"-- NORMAL --\"'",
               "halt": true
-            }
-          ],
-          "to_if_held_down": [
-            {
-              "key_code": "left_command"
             }
           ],
           "conditions": [
@@ -52,55 +54,10 @@
             }
           ],
           "parameters": {
-            "basic.to_if_alone_threshold_milliseconds": 100,
-            "basic.to_if_held_down_threshold_milliseconds": 0
+            "basic.simultaneous_threshold_milliseconds": 80
           }
         },
 
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "left_command"
-          },
-          "to_if_alone": [
-            {
-              "set_variable": {
-                "name": "vim_mode",
-                "value": 0
-              }
-            },
-            {
-              "shell_command": "osascript -e 'display notification with title \"-- INSERT --\"'"
-            }
-          ],
-          "to_if_held_down" : [
-            {
-              "key_code": "left_command"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "com.googlecode.iterm2",
-                "com.github.atom",
-                "com.jetbrains.pycharm",
-                "com.visualstudio.code.oss",
-                "md.obsidian",
-                "io.imdone.app"
-              ]
-            },
-            {
-              "name": "vim_mode",
-              "type": "variable_if",
-              "value": 1
-            }
-          ],
-          "parameters": {
-            "basic.to_if_alone_threshold_milliseconds": 100,
-            "basic.to_if_held_down_threshold_milliseconds": 0
-          }
-        },
 
 
 
