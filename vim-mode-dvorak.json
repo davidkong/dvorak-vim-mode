@@ -9,6 +9,102 @@
     {
       "description": "(Vim 1/11) caps_lock -> on, caps_lock, enter, esc, control+[ or any pointing_button -> off",
       "manipulators": [
+
+
+{
+          "type": "basic",
+          "from": {
+            "key_code": "left_command"
+          },
+          "to_if_alone": [
+            {
+              "set_variable": {
+                "name": "vim_mode",
+                "value": 1
+              }
+            },
+            {
+              "shell_command": "osascript -e 'display notification \"Press [i] to leave\" with title \"-- NORMAL --\"'",
+              "halt": true
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "left_command"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss",
+                "md.obsidian",
+                "io.imdone.app"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_unless",
+              "value": 1
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_threshold_milliseconds": 100,
+            "basic.to_if_held_down_threshold_milliseconds": 0
+          }
+        },
+
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_command"
+          },
+          "to_if_alone": [
+            {
+              "set_variable": {
+                "name": "vim_mode",
+                "value": 0
+              }
+            },
+            {
+              "shell_command": "osascript -e 'display notification with title \"-- INSERT --\"'"
+            }
+          ],
+          "to_if_held_down" : [
+            {
+              "key_code": "left_command"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2",
+                "com.github.atom",
+                "com.jetbrains.pycharm",
+                "com.visualstudio.code.oss",
+                "md.obsidian",
+                "io.imdone.app"
+              ]
+            },
+            {
+              "name": "vim_mode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_threshold_milliseconds": 100,
+            "basic.to_if_held_down_threshold_milliseconds": 0
+          }
+        },
+
+
+
+
         {
           "type": "basic",
           "from": {
