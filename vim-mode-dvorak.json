@@ -3993,6 +3993,9 @@
           },
           "to": [
             {
+              "key_code": "left_arrow"
+            },
+            {
               "key_code": "a",
               "modifiers": [
                 "left_control"
@@ -4029,6 +4032,9 @@
             }
           },
           "to": [
+            {
+              "key_code": "right_arrow"
+            },
             {
               "key_code": "d",
               "modifiers": [
